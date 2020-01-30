@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Import wal-colors
+[ -f "$HOME/.cache/wal/colors.sh" ] && . "$HOME/.cache/wal/colors.sh"
+
+# Replace color in bspwmrc
+sed -i.bak -e "/normal_border/s/\#....../${color6}/" -e "/active_border/s/\#....../${color6}/" $HOME/.config/bspwm/bspwmrc
+
+# Reload bspwmrc
+$HOME/.config/bspwm/bspwmrc

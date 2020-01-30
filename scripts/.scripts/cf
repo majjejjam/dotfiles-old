@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo -e "PROGRAMS\tCOMMANDS"
+
+# variable with all cf-lines
+text=$(grep 'cf' $HOME/.bashrc)
+
+echo "${text//#}" | sed 's/=/ /g' | awk '{print NR ". " $NF "   \t" $2}'
+
+echo -e "\nenter a value between 0 and $(echo "$text" | wc -l): "
+
+read cf
+
+eval "$( echo "${text//\'}" | sed 's/=/ /g' | awk -v var="$cf" 'NR==var {print $3 " " $4}')"
